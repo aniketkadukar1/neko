@@ -20,6 +20,17 @@ class Restaurent(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    #Overrinding save method to check if object is created for the first time or not
+    # If object created for the first time, it returns TRUE
+    # Else it return FALSE    
+    def save(self, *args, **kwargs):
+        print(self._state.adding)
+        if self._state.adding:
+            print("You can send me to the respective person - USECASE")
+        super().save(*args, **kwargs)
+    
+    
+
 
 class Rating(models.Model):
     restaurent = models.ForeignKey(Restaurent, on_delete=models.CASCADE, related_name='ratings')
