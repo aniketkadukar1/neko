@@ -4,6 +4,11 @@ from django.db import connection
 from pprint import pprint
 
 def run():
-    chinese = Restaurent.TypeChoices.CHINESE
-    restaurent = Restaurent.objects.filter(restaurent_type = chinese, name__startswith='C')
+    restaurent = Restaurent.objects.select_related()
     pprint(restaurent)
+    print("_________________________________________________")
+    
+
+    print("_________________________________________________")
+    
+    pprint(connection.queries)
